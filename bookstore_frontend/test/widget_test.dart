@@ -3,16 +3,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bookstore_frontend/main.dart';
 
 void main() {
-  testWidgets('App generation message displayed', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
-
-    expect(find.text('bookstore_frontend App is being generated...'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  testWidgets('Shows bottom navigation with Books and Transactions', (tester) async {
+    await tester.pumpWidget(const BookstoreApp());
+    expect(find.text('Books'), findsOneWidget);
+    expect(find.byIcon(Icons.menu_book), findsWidgets);
+    expect(find.byIcon(Icons.receipt_long), findsWidgets);
   });
 
-  testWidgets('App bar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Books tab is visible and Transactions tab can be selected', (tester) async {
+    await tester.pumpWidget(const BookstoreApp());
+    // Starts on Books
+    expect(find.text('Books'), findsOneWidget);
 
-    expect(find.text('bookstore_frontend'), findsOneWidget);
+    // Tap Transactions
+    await tester.tap(find.text('Transactions'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Transactions'), findsOneWidget);
   });
 }
