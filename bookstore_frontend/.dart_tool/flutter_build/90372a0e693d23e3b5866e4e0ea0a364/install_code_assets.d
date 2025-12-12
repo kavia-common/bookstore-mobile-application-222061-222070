@@ -1,0 +1,1 @@
+ /home/kavia/workspace/code-generation/bookstore-mobile-application-222061-222070/bookstore_frontend/.dart_tool/flutter_build/90372a0e693d23e3b5866e4e0ea0a364/native_assets.json: 
